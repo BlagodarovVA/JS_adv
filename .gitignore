@@ -1,0 +1,5 @@
+Thumbs.db
+.vscode
+*.zip
+*.log
+/node_modules
