@@ -421,11 +421,15 @@ window.addEventListener('DOMContentLoaded', () => {
         dots.push(dot);
     }
 
+    function strToNumber(str) {
+        return +str.replace(/\D/g, '');
+    }
+
     next.addEventListener('click', () => {
-        if (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
+        if (offset == strToNumber(width) * (slides.length - 1)) {
             offset = 0;
         } else {
-            offset += +width.slice(0, width.length - 2);
+            offset += strToNumber(width);
         }
 
         slidesField.style.transform = `translateX(-${offset}px)`;   // сдвигаем слайды на отступ
@@ -448,9 +452,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     prev.addEventListener('click', () => {
         if (offset == 0) {
-            offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+            offset = strToNumber(width) * (slides.length - 1);
         } else {
-            offset -= +width.slice(0, width.length - 2);
+            offset -= strToNumber(width);
         }
 
         slidesField.style.transform = `translateX(-${offset}px)`;   // сдвигаем слайды на отступ
@@ -476,7 +480,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const slideTo = e.target.getAttribute('data-slide-to');
 
             slideIndex = slideTo;
-            offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+            offset = strToNumber(width) * (slideTo - 1);
 
             slidesField.style.transform = `translateX(-${offset}px)`;   // сдвигаем слайды на отступ
 
